@@ -7,11 +7,11 @@
 
 ---
 
-## Research Interests
-
-- Building Resilience
-- Thermal Comfort
-- Indoor Air Quality
+## Education
+- PhD (struggling) in Engineering Technology at [KU Leuven](https://www.kuleuven.be/kuleuven),[Building Physics and Sustainable Design Group](https://iiw.kuleuven.be/onderzoek/building-physics-and-sustainable-design) 2024-
+- MSc (graduated with Disctinction) in Smart Buildings and Digital Engineering from School of Environment,Energy and Resources,University College London
+- MSc (graduated with Merit) in Engineering with Management (infrastructures) from School of Engineering, University of Bristol
+- BEng (graduated with nothing but confidence) in Architecture from School of Architecture and Urban Planning, Huazhong University of Science and Technology
 
 ---
 
