@@ -21,3 +21,6 @@
 1. Your Name (2025).  
    Paper title.  
    [Journal link](https://doi.org/xxxxx)
+
+## test 
+[![Google Scholar](https://img.shields.io/badge/Google-Scholar-blue)](https://scholar.google.com)
