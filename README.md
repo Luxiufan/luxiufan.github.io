@@ -1,5 +1,14 @@
 <h2>Curriculum Vitae</h2>
 
+<div style="width:100%; height:900px;">
+  <iframe 
+    src="cv.pdf" 
+    width="100%" 
+    height="100%" 
+    style="border:none;">
+  </iframe>
+</div>
+
 <p>
 <a href="Hi.pdf" download style="
 background-color:#2da44e;
