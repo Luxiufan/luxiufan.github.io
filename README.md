@@ -1,6 +1,5 @@
-# TEST template
-# Your Name
 
+# Your Name
 📍 Brussels, Belgium  
 📧 your@email.com  
 🔗 [LinkedIn](https://linkedin.com/in/yourname)  
