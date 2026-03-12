@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name | Portfolio CV</title>
+  <style>
+    :root {
+      --bg: #f3f4f6;
+      --text: #111827;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --accent: #7c3aed;
+      --accent-soft: #f5f3ff;
+      --border: #e5e7eb;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 20px 60px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--muted);
+      margin-left: 16px;
+      transition: color 0.2s ease;
+    }
+
+    .nav a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #ede9fe, #ffffff);
+      border-radius: 24px;
+      padding: 40px 28px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 42px;
+    }
+
+    .hero p {
+      max-width: 900px;
+      color: var(--muted);
+      font-size: 18px;
+      margin-bottom: 18px;
+      line-height: 1.7;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .button-row a,
+    .button-row button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+      font-family: inherit;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .button-row a:hover,
+    .button-row button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+    }
+
+    .primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .secondary {
+      background: white;
+      color: var(--accent);
+      border: 1px solid #ddd6fe;
+    }
+
+    .button-row button.primary.active {
+      background: #6d28d9;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      grid-column: span 6;
+      background: var(--card);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card.large {
+      grid-column: span 12;
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 22px;
+      margin-bottom: 18px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .list-item {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .list-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .item-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .item-main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .item-title {
+      font-weight: 700;
+      font-size: 17px;
+      margin-bottom: 4px;
+    }
+
+    .item-meta {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+      word-break: break-word;
+    }
+
+    .expand-btn {
+      width: 32px;
+      height: 32px;
+      border: 1px solid #ddd6fe;
+      background: #fff;
+      color: var(--accent);
+      border-radius: 999px;
+      cursor: pointer;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      line-height: 1;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .expand-btn:hover {
+      background: var(--accent-soft);
+      transform: scale(1.06);
+      box-shadow: 0 6px 14px rgba(124, 58, 237, 0.12);
+    }
+
+    .expand-btn:focus {
+      outline: 2px solid rgba(124, 58, 237, 0.25);
+      outline-offset: 2px;
+    }
+
+    .expand-btn::after {
+      content: attr(data-tip);
+      position: absolute;
+      top: -36px;
+      right: 0;
+      background: #111827;
+      color: white;
+      font-size: 12px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(4px);
+      pointer-events: none;
+      transition: all 0.18s ease;
+    }
+
+    .expand-btn:hover::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .expand-icon {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .expand-btn.active .expand-icon {
+      transform: rotate(45deg);
+    }
+
+    .detail {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.35s ease, opacity 0.25s ease, margin-top 0.25s ease;
+      margin-top: 0;
+      color: #374151;
+    }
+
+    .detail.open {
+      max-height: 2000px;
+      opacity: 1;
+      margin-top: 12px;
+    }
+
+    .detail p {
+      margin: 0 0 10px;
+      line-height: 1.7;
+    }
+
+    .detail ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #374151;
+      line-height: 1.8;
+    }
+
+    .detail li {
+      margin-bottom: 6px;
+    }
+
+    @media (max-width: 800px) {
+      .card,
+      .card.large {
+        grid-column: span 12;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">Online CV of</div>
+      <div class="nav">
+        <a href="#education">Education</a>
+        <a href="#work">Occupation</a>
+        <a href="#pub">Selected works</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+
+    <section class="hero">
+      <h1>Peihang An </h1>
+      <p>
+        Dear reader, my name is Peihang An, a PhD student from KU Leuven who is expected to graduate in 2028 and start my career stage thereafter. I hope this page provides you with a clearer understanding of my journey, paving the way for potential future collaborations, whether commercial or academic. Therefore, I have been actively seeking opportunities and inspiration for my next venture. I hope this page could provide you with a better understanding of my background, in the hope that we may have the privilege of engaging in future business or academic collaborations. 
+      </p>
+
+      <div class="detail" id="hero-detail">
+        <p>
+          As a PhD student in the Building Physics and Sustainable Design Group at KU Leuven, I focus my research on the thermal and indoor air quality resilience of buildings, with particular emphasis on the performance of building systems during disruptive events such as heat waves and power outages, as well as the spatial variation of resilience within single building zones. My project seeks to establish a holistic assessment framework encompassing both thermal and IAQ resilience. This framework will identify and quantify disruptive events, assess their threats and frequency of occurrence. Additionally, the research aims to define a quantitative indicator to assess the combined resilience of buildings to thermal and IAQ shocks. Mitigation strategies and recommendations for building and system design will also be formulated.
+        </p>
+        <p>
+          During my undergraduate and postgraduate studies, I also gained substantial practical experience in building design through coursework and internships. My particular interest in building performance and simulation techniques during undergraduate led me to pursue my current research role. Beyond my primary research focus, I hold a keen interest in data-driven methodologies—such as machine learning—to support building performance simulation(e.g. prediction of energy consumption). I also served as an R&D Manager at a satellite remote sensing technology company for nearly a year. Beyond acquiring solid practical knowledge in remote sensing and GIS applications, I am confident in my ability to quickly familiarise myself with novel domains through learning and research.
+        </p>
+      </div>
+
+      <div class="button-row">
+        <button class="primary" id="about-toggle" type="button" aria-expanded="false" aria-controls="hero-detail">
+          More about Me
+        </button>
+        <a class="primary" href="#contact">Contact Me</a>
+        <a class="primary" href="#">Download CV</a>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="card" id="education">
+        <h2>Education</h2>
+
+        <div class="list-item">
+          <div class="item-head">
+            <div class="item-main">
+              <div class="item-title">PhD in Engineering Technology</div>
+              <div class="item-meta">KU Leuven · 2024 – Present</div>
+            </div>
+            <button class="expand-btn" type="button" data-target="edu1" data-tip="Expand" aria-label="Expand details">
+              <span class="expand-icon">+</span>
+            </button>
+          </div>
+          <div class="detail" id="edu1">
+            <p>
+              Building Physics and Sustainable Design Group | Department of Civil Engineering
+            </p>
+            <ul>
+              <li>Topic: Determining the interdependency of thermal and IAQ resilience of buildings during disruptive events: A holistic assessment framework</li>
+              <li>Key words: building modelling simulation, resilience, thermal comfort, indoor air quality, assessment framework, computational fluid dynamics</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div class="item-head">
+            <div class="item-main">
+              <div class="item-title">MSc in Smart Buildings and Digital Engineering</div>
+              <div class="item-meta">University College London · 2022 – 2023</div>
+            </div>
+            <button class="expand-btn" type="button" data-target="edu2" data-tip="Expand" aria-label="Expand details">
+              <span class="expand-icon">+</span>
+            </button>
+          </div>
+          <div class="detail" id="edu2">
+            <p>
+              Institute for Environmental Design and Engineering | School of Environment, Energy and Resources
+            </p>
+            <ul>
+              <li>Graduated with Distinction</li>
+              <li>Best Master Dissertation Award</li>
+              <li>Second-highest overall GPA</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div class="item-head">
+            <div class="item-main">
+              <div class="item-title">MSc in Engineering with Management</div>
+              <div class="item-meta">University of Bristol · 2020 – 2021</div>
+            </div>
+            <button class="expand-btn" type="button" data-target="edu3" data-tip="Expand" aria-label="Expand details">
+              <span class="expand-icon">+</span>
+            </button>
+          </div>
+          <div class="detail" id="edu3">
+            <p>
+              School of Civil, Aerospace and Design Engineering | Faculty of Science and Engineering
+            </p>
+            <ul>
+              <li>Graduated with Merit</li>
+              <li>Pathway: Infrastructure Systems</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div class="item-head">
+            <div class="item-main">
+              <div class="item-title">BEng in Architecture</div>
+              <div class="item-meta">Huazhong University of Science and Technology 华中科技大学 · 2015 – 2020</div>
+            </div>
+            <button class="expand-btn" type="button" data-target="edu4" data-tip="Expand" aria-label="Expand details">
+              <span class="expand-icon">+</span>
+            </button>
+          </div>
+          <div class="detail" id="edu4">
+            <p>
+              School of Architecture and Urban Planning 建筑与城市规划学院
+            </p>
+            <ul>
+              <li>Contributed research on pandemic-resilient housing to a sub-project adopted by the Hubei Provincial Department of Housing and Urban-Rural Development (湖北省住房和城乡建设厅).</li>
+              <li>Exchange at University of Illinois at Urbana-Champaign (Data Science and Control System)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div class="item-head">
+            <div class="item-main">
+              <div class="item-title">High school graduate</div>
+              <div class="item-meta">Beijing No.2 Middle School 北京市第二中学 · 2009 – 2015</div>
+            </div>
+            <button class="expand-btn" type="button" data-target="edu5" data-tip="Expand" aria-label="Expand details">
+              <span class="expand-icon">+</span>
+            </button>
+          </div>
+          <div class="detail" id="edu5">
+            <ul>
+              <li>President of the Duoyun Modern Drama Society (铎韵剧社).</li>
+              <li>Co-founder of Beijing High School Drama League (北京市高中话剧联盟)</li>
+              <li>Third Prize in the Preliminary Round of the Beijing Physics (Mechanics) Competition</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="work">
+        <h2>Occupation</h2>
+
+        <div class="list-item">
+          <div class="item-head">
+            <div class="item-main">
+              <div class="item-title">PhD Researcher (academic staff)</div>
+              <div class="item-meta">KU Leuven · 2024 – Present</div>
+            </div>
+            <button class="expand-btn" type="button" data-target="work1" data-tip="Expand" aria-label="Expand details">
+              <span class="expand-icon">+</span>
+            </button>
+          </div>
+          <div class="detail" id="work1">
+            <ul>
+              <li>Research: Designing resilience assessment workflows for building performance resilience studies</li>
+              <li>Instructing master/bachelor-level courses (building modelling simulation)</li>
+              <li>Co-supervising master students' thesis</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div class="item-head">
+            <div class="item-main">
+              <div class="item-title">R&amp;D Manager</div>
+              <div class="item-meta">Hanhai Rongke Space (Beijing) Technology Co., Ltd. 瀚海融科空间（北京）技术有限公司 · 2022</div>
+            </div>
+            <button class="expand-btn" type="button" data-target="work2" data-tip="Expand" aria-label="Expand details">
+              <span class="expand-icon">+</span>
+            </button>
+          </div>
+          <div class="detail" id="work2">
+            <ul>
+              <li>Technical tracking, data aggregation and analysis of the commercial space sector, especially the satellite remote sensing application industry.</li>
+              <li>Followed up on digital twin projects based on remote sensing satellite data and resolved related issues in a timely manner.</li>
+              <li>Developed application models for remote sensing data based on the Cesium platform.</li>
+              <li>Participated in digital twin development for pipe network and photovoltaic plant scenarios based on Unreal Engine 5.</li>
+              <li>Collaborated with other technical teams on digital twin presentation technology and aerospace education products.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div class="item-head">
+            <div class="item-main">
+              <div class="item-title">Digital Construction Consultant (intern)</div>
+              <div class="item-meta">China Design Digital Technology Co., Ltd. 中设数字技术有限公司 · 2021 – 2022</div>
+            </div>
+            <button class="expand-btn" type="button" data-target="work3" data-tip="Expand" aria-label="Expand details">
+              <span class="expand-icon">+</span>
+            </button>
+          </div>
+          <div class="detail" id="work3">
+            <ul>
+              <li>Research and evaluation of mainstream BIM-related software on the market.</li>
+              <li>Assisted in the development of a quantitative assessment methodology for BIM application in projects.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div class="item-head">
+            <div class="item-main">
+              <div class="item-title">Assistant Architect (intern)</div>
+              <div class="item-meta">Beijing Institute of Architectural Design Co., Ltd 北京市建筑设计研究院股份有限公司 · 2019</div>
+            </div>
+            <button class="expand-btn" type="button" data-target="work4" data-tip="Expand" aria-label="Expand details">
+              <span class="expand-icon">+</span>
+            </button>
+          </div>
+          <div class="detail" id="work4">
+            <ul>
+              <li>Assisted architects with architectural design and quantitative analysis using CAD, Rhino, Revit, etc.</li>
+              <li>Conducted site research and wrote research reports on architectural projects.</li>
+              <li>Collected and collated information and wrote relevant texts such as project tenders.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div class="item-head">
+            <div class="item-main">
+              <div class="item-title">Assistant Translator (part-time intern)</div>
+              <div class="item-meta">ArchDaily · 2019</div>
+            </div>
+            <button class="expand-btn" type="button" data-target="work5" data-tip="Expand" aria-label="Expand details">
+              <span class="expand-icon">+</span>
+            </button>
+          </div>
+          <div class="detail" id="work5">
+            <ul>
+              <li>Translation of construction news, project texts, and documentation.</li>
+              <li>Daily editing of construction project texts on www.archdaily.cn.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card large" id="pub">
+        <h2>Selected Works</h2>
+
+        <div class="list-item">
+          <div class="item-head">
+            <div class="item-main">
+              <div class="item-title">Resilient passive cooling strategies during heat waves: A quantitative assessment in different climates</div>
+              <div class="item-meta">Building and Environment, 2025 | https://doi.org/10.1016/j.buildenv.2025.112698</div>
+            </div>
+            <button class="expand-btn" type="button" data-target="pub1" data-tip="Expand" aria-label="Expand details">
+              <span class="expand-icon">+</span>
+            </button>
+          </div>
+          <div class="detail" id="pub1">
+            <p>
+              Abstract: The frequency and severity of extreme weather events like heat waves are rising, posing significant challenges for buildings and their cooling systems. To safeguard occupants from potentially hazardous indoor temperatures, buildings and their cooling systems must be designed and managed to withstand these conditions and thus be resilient. This study assessed via building simulations the resilience performance of selected individual passive cooling strategies for five different climates (ASHRAE climate zones 2A, 3A, 3B, 4A, and 6A) and three heatwave periods (historical, future mid-term and future long-term). Resilience performance was assessed with three criteria: heatwave impact (°C·h above a reference standard effective temperature), absorptivity rate (°C/h), and recovery rate (°C/h). Strategies such as solar shading, cool envelope materials, advanced glazing, and ventilative cooling could each reduce the heat wave impact and the absorptivity rates in all studied climates at different levels of efficiency. As the heat waves became more extreme, the performance declined at different rates depending on the climate. Some strategies were more suited to specific climates such as cool envelope materials in climate 2A. Most strategies could not speed up the recovery rates from the heat waves except for ventilative cooling in climate 3B. With careful design to maximize the benefits of favorable wind conditions, every climate could benefit from ventilative cooling strategies to speed up recovery from heat waves.
+            </p>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div class="item-head">
+            <div class="item-main">
+              <div class="item-title">Power Outage Profiles’ Generation to Assess Resilience Performance of an Educational Building</div>
+              <div class="item-meta">15th REHVA HVAC World Congress, 2025 | https://doi.org/10.1007/978-3-032-06810-1_45</div>
+            </div>
+            <button class="expand-btn" type="button" data-target="pub2" data-tip="Expand" aria-label="Expand details">
+              <span class="expand-icon">+</span>
+            </button>
+          </div>
+          <div class="detail" id="pub2">
+            <p>
+              Abstract: Unexpected power outages (POs) pose significant risks to occupants’ wellbeing, due to their disruptive nature on building services. Modern buildings heavily depend on HVAC systems for maintaining indoor environmental quality, consequently the disruptions in HVAC operations due to a PO can significantly degrade thermal comfort and indoor air quality (IAQ) causing health challenge to residents. POs can arise from various causes, ranging from extreme weather events like thunder strike to technical failures such as overload. Researchers studying the impact of PO on occupants’ wellbeing assume PO profiles without considering their probability of occurrence. Few studies quantify POs using statistic methods, i.e. the probability of PO occurrence is barely considered in impact evaluation. This paper introduces a novel approach to generate probability-based PO profiles for thermal comfort and IAQ resilience assessment. The probability of PO occurrences, varying in duration and starting time, is firstly determined using geometric probability theory, by calculating the ratio of affected power users over the total users within a selected area. Subsequently, Reverse Monte-Carlo simulations are used to construct PO shocks for a single-user target building. Finally, the indoor environment is modeled through building simulations, where HVAC operations are paused according to the input PO results. This approach is applied to a case study, an educational building with two lecture rooms E220 and E120. The simulated thermal comfort and IAQ results in different PO scenarios are compared against the benchmark performance without PO, with performance losses measured via Standard Effective Temperature (SET) degree.hours (SETDh) and CO2 concentration ppm.hours. The results showed that SETDh could increase 60–70% for both room in scenario 1, and peaks at 8.62 for E120 in scenario 2, yet it never goes beyond the overall acceptance threshold. However the deterioration of the IAQ is quite sensitive to POs, in the case study, when the longer PO covers higher occupancy rate, the ppm.hours can increase to over 4,000% of the benchmark performance. This study indicates that PO shocks have a much greater impact on the IAQ of the target building than thermal comfort.
+            </p>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div class="item-head">
+            <div class="item-main">
+              <div class="item-title">A methodology for generating power outage profiles for thermal and IAQ resilience assessment of building (pre-print)</div>
+              <div class="item-meta">Building and Environment, 2026 | https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6214801</div>
+            </div>
+            <button class="expand-btn" type="button" data-target="pub3" data-tip="Expand" aria-label="Expand details">
+              <span class="expand-icon">+</span>
+            </button>
+          </div>
+          <div class="detail" id="pub3">
+            <p>
+              Abstract: Power outages (PO) are critical disturbances for buildings because they disrupt heating, ventilation and air conditioning systems, simultaneously challenging thermal and indoor air quality (IAQ) resilience. Existing resilience studies often rely on simplified and unrealistic PO assumptions (e.g., multi-day outages) without considering their probability of occurrence. This paper presents a probabilistic, data-driven methodology that generates realistic PO profiles from historical outage records and applies them to assess thermal and IAQ resilience of a case-study educational building in Ghent, Belgium, modelled in Dymola. Geometrical probability and Monte Carlo sampling are used to produce large sets of PO profiles consistent with local outage statistics. 163 PO profiles are selected as the input boundary conditions to assess resilience, which is quantified via cumulative exposure above thresholds for Standard Effective Temperature (SET), concentrations of CO₂ and VOC. Under these conditions, the proposed framework enables a unified resilience assessment of thermal and IAQ resilience under various PO scenarios. In the case study, thermal resilience is not challenged mainly because the temperate weather conditions (without heat waves) barely push indoor temperatures above the threshold. Whereas the CO₂ cumulative exposure shift from near zero in most benchmark cases to a broadened range of 0–30 ppm·h under POs. Cumulative exposure of VOC concentration increases systematically (over a quarter of cases increasing by more than 6% with some exceeding 30%). The overlap between PO periods and occupancy is identified as the primary determinant of impact on IAQ resilience, rather than the start time or duration alone.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card large" id="contact">
+        <h2>Contact</h2>
+        <p class="muted">
+          Email: peihang.an@kuleuven.be<br>
+          LinkedIn: https://www.linkedin.com/in/phillalex/<br>
+          University homepage: https://www.kuleuven.be/wieiswie/en/person/00168968
+        </p>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    // 所有小圆按钮展开
+    const buttons = document.querySelectorAll('.expand-btn');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const targetId = button.getAttribute('data-target');
+        const detail = document.getElementById(targetId);
+        if (!detail) return;
+
+        const isOpen = detail.classList.contains('open');
+        detail.classList.toggle('open');
+        button.classList.toggle('active');
+
+        button.setAttribute('data-tip', isOpen ? 'Expand' : 'Collapse');
+        button.setAttribute('aria-label', isOpen ? 'Expand details' : 'Collapse details');
+      });
+    });
+
+    // About Me 按钮展开 hero 内容
+    const aboutToggle = document.getElementById('about-toggle');
+    const heroDetail = document.getElementById('hero-detail');
+
+    if (aboutToggle && heroDetail) {
+      aboutToggle.addEventListener('click', () => {
+        const isOpen = heroDetail.classList.contains('open');
+        heroDetail.classList.toggle('open');
+        aboutToggle.classList.toggle('active');
+        aboutToggle.setAttribute('aria-expanded', String(!isOpen));
+      });
+    }
+  </script>
+</body>
+</html>
